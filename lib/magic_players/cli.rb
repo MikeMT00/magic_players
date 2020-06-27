@@ -14,6 +14,7 @@ class MagicPlayers::CLI
       2. Penny Hardaway
       3. Shaquille ONeal
     DOC
+    @magic_players = MagicPlayers::Players.all
   end
 
   def player_selection

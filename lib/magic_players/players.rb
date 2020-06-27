@@ -1,0 +1,7 @@
+class MagicPlayers::Players
+
+
+
+
+
+end

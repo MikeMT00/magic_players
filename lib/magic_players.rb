@@ -1,6 +1,2 @@
-require "magic_players/version"
-
-module MagicPlayers
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./magic_players/version"
+require_relative './magic_players/cli'

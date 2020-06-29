@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Michael Thomas'"]
   spec.email         = ["'michaelthomas0611@gmail.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
+  spec.description   = %q{Write a longer description or delete this line.}
   spec.homepage      = "https://api-nba-v1.p.rapidapi.com"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

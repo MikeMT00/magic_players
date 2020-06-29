@@ -1,6 +1,7 @@
 #Our CLI Controller
 class MagicPlayers::CLI
 
+
   def call
     list_players
     player_selection
@@ -8,16 +9,18 @@ class MagicPlayers::CLI
   end
 
   def list_players
+
     puts "Pick Your Favorite Magic Player!"
     puts <<-DOC
       1. Dwight Howard
       2. Penny Hardaway
       3. Shaquille ONeal
     DOC
-    #@magic_players = MagicPlayers::Players.all
+
   end
 
   def player_selection
+
     puts "Select the number on the player that you want to know about. Type list for list of players. Type exit to leave:"
     input = nil
     while input != "exit"
@@ -35,10 +38,13 @@ class MagicPlayers::CLI
         puts "Wrong entry, try again!"
       end
     end
+
   end
 
   def goodbye
+
     puts "Thank you for visiting the Orlando Magic!"
+
   end
 
 

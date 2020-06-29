@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require './lib/magic_players'
+require_relative '../lib/magic_players'
 
-MagicPlayers::CLI.new.call
+MagicPlayers::CLI.new.start

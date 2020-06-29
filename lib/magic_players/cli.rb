@@ -8,7 +8,7 @@ class MagicPlayers::CLI
 
   def start
     list_players
-    select_players
+    get_players_data
     #binding.pry
     main_entry
   end
@@ -23,14 +23,14 @@ class MagicPlayers::CLI
   end
 
 
-  def select_players
+  def get_players_data
     MagicPlayers::PlayersAPI.get_players(@page, @limit)
   end
 
   def main_entry
     loop do
         menu
-        input = get_players_details
+        input = get_player_details
         case input
         when "exit"
             break
@@ -40,7 +40,7 @@ class MagicPlayers::CLI
             @page += 1
             _, stop = get_page_range
             if MagicPlayers::Players.all.length < stop
-                get_players_details
+                get_players_data
             end
         when "prev"
             if @page <= 1
@@ -49,7 +49,7 @@ class MagicPlayers::CLI
               @page -= 1
             end
         else
-            display_player(input)
+            display_single_player(input)
         end
 
       end
@@ -61,7 +61,7 @@ class MagicPlayers::CLI
         #binding.pry
     end
 
-    def get_players_details
+    def get_player_details
         input = gets.strip.downcase
         commands = ["exit", "next", "prev"]
         return input.downcase if commands.include?(input.downcase)
@@ -74,20 +74,20 @@ class MagicPlayers::CLI
     end
 
     def display_player
-        start, stop = page_range
+        start, stop = get_page_range
         players = MagicPlayers::Players.all[start...stop]
         players.each.with_index(start) do |players, index|
             puts "#{index}. #{players.name}"
         end
     end
 
-    def page_pange
+    def get_page_range
         [(@page - 1) * @limit, @page * @limit]
     end
 
-    def display_player
-      player_obj = MagicPlayers::Players.all
-      MagicPlayers::PlayersAPI.get_players_details(player_obj)
+    def display_single_player(i)
+      player_obj = MagicPlayers::Players.all[i]
+      MagicPlayers::PlayersAPI.get_player_details(player_obj)
       #binding.pry
       puts player_obj.full_details
       puts 'press any key to continue on'

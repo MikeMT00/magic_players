@@ -37,10 +37,10 @@ class MagicPlayers::PlayersAPI
 
       url = URI("https://api-nba-v1.p.rapidapi.com/players/teamId/26")
 
-    url = player_obj.url
-    res = Net::HTTP::Get.new(url)
-        request["x-rapidapi-host"] = 'api-nba-v1.p.rapidapi.com'
-        request["x-rapidapi-key"] = '601b131cb1mshd49db1d37cdb4dep118f4fjsnde6b89799391'
+    url = player_obj
+    # res = Net::HTTP::Get.new(url)
+    #     request["x-rapidapi-host"] = 'api-nba-v1.p.rapidapi.com'
+    #     request["x-rapidapi-key"] = '601b131cb1mshd49db1d37cdb4dep118f4fjsnde6b89799391'
 
     #binding.pry
     player_obj.weight = res["weight"]

@@ -4,7 +4,6 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-require_relative './magic_players/cli'
 require_relative './magic_players/players_api'
 require_relative './magic_players/players'
-#require_relative './magic_players/league'
+require_relative './magic_players/cli'

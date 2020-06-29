@@ -8,7 +8,7 @@ class MagicPlayers::CLI
 
   def start
     list_players
-    player_selection
+    select_players
     #binding.pry
     main_entry
   end
@@ -22,10 +22,9 @@ class MagicPlayers::CLI
 
   end
 
-  def player_selection
 
-      MagicPlayers::Players.get_players_details(@page, @limit)
-
+  def select_players
+    MagicPlayers::PlayersAPI.get_players(@page, @limit)
   end
 
   def main_entry
@@ -56,7 +55,7 @@ class MagicPlayers::CLI
       end
     end
 
-    def main_menu
+    def menu
         display_player
         display_directions
         #binding.pry
@@ -66,7 +65,7 @@ class MagicPlayers::CLI
         input = gets.strip.downcase
         commands = ["exit", "next", "prev"]
         return input.downcase if commands.include?(input.downcase)
-        if  input.to_i.between?(1, MagicPlayers::Players.all.length)
+        if input.to_i.between?(1, MagicPlayers::Players.all.length)
             return input.to_i - 1
         else
             puts "Wrong entry! Try another selection!"
@@ -86,8 +85,8 @@ class MagicPlayers::CLI
         [(@page - 1) * @limit, @page * @limit]
     end
 
-    def display_player(i)
-      player_obj = MagicPlayers::Players.all[i]
+    def display_player
+      player_obj = MagicPlayers::Players.all
       MagicPlayers::PlayersAPI.get_players_details(player_obj)
       #binding.pry
       puts player_obj.full_details

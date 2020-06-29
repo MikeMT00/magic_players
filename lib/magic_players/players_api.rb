@@ -28,12 +28,14 @@ class MagicPlayers::PlayersAPI
 
     response = http.request(request)
     puts response.read_body
-    MagicPlayers::Players.mass_create_from_api(playerarr)
+
 
   end
 
   def self.get_players_details(player_obj)
     puts "\nMAKING A NETWORK REQUEST.....\n"
+
+      url = URI("https://api-nba-v1.p.rapidapi.com/players/teamId/26")
 
     url = player_obj.url
     res = Net::HTTP::Get.new(url)
@@ -48,6 +50,7 @@ class MagicPlayers::PlayersAPI
 
     response = http.request(request)
     puts response.read_body
+
 
   end
       # res

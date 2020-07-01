@@ -1,105 +1,81 @@
 #Our CLI Controller
-class MagicPlayers::CLI
+class Cli
 
-  def initialize
-    @page = 1
-    @limit = 20
-  end
+  def run
+    puts " "
+    puts "Welcome to the world of the Orlando Magic!:"
+    puts " "
+    puts "Do you like our Orlando Magic Basketball Players: y or n"
+    @input = gets.strip.downcase
+    prompt_user if orig_input(@input)
+    prompt_input = gets.strip.downcase
 
-  def start
-    list_players
-    get_players_data
-    #binding.pry
-    main_entry
-  end
-
-  def list_players
-
-    puts "\n\n\n\n"
-    puts "Pick Your Favorite Magic Player!"
-    sleep(2)
-    puts "\n\n\n\n"
-
-  end
-
-
-  def get_players_data
-    MagicPlayers::PlayersAPI.get_players(@page, @limit)
-  end
-
-  def main_entry
-    loop do
-        menu
-        input = get_player_details
-        case input
-        when "exit"
-            break
-        when "invalid"
-            next
-        when "next"
-            @page += 1
-            _, stop = get_page_range
-            if MagicPlayers::Players.all.length < stop
-                get_players_data
+      while prompt_input != "exit"
+          if prompt_input.to_i.between?(1, Players.all.length)
+              players = Players.all[prompt_input.to_i - 1]
+              PlayersAPI.players_info_call(players)
+              print_spell(players)
+          elsif prompt_input == "list"
+              Players.all.each.with_index(1) do |players, index|
+              puts "#{index}. #{players.name}"
+              end
+          elsif prompt_input == "#{prompt_input}"
+            by_letter = Players.find_by_letter(prompt_input)
+            by_letter.each.with_index(1) do |players, index|
+              puts "#{index}. #{players.name}"
             end
-        when "prev"
-            if @page <= 1
-              puts "You have selected Player 1!"
-            else
-              @page -= 1
-            end
-        else
-            display_single_player(input)
-        end
-
+                if by_letter.empty?
+                  puts "Try again:"
+                else
+                  puts "Choose a number to learn more:"
+                  puts " "
+                  input = gets.strip.to_i
+                  spell = by_letter[input.to_i - 1]
+                  PlayersApi.players_info_call(players)
+                  print_players(players)
+                end
+          else
+              puts "We don't understand...try again"
+          end
+              prompt_user
+              prompt_input = gets.strip.downcase
       end
+          puts "Thank you for visiting your Orlando Magic! See you later!"
+
+
     end
 
-    def menu
-        display_player
-        display_directions
-        #binding.pry
-    end
-
-    def get_player_details
-        input = gets.strip.downcase
-        commands = ["exit", "next", "prev"]
-        return input.downcase if commands.include?(input.downcase)
-        if input.to_i.between?(1, MagicPlayers::Players.all.length)
-            return input.to_i - 1
-        else
-            puts "Wrong entry! Try another selection!"
-            return "Error!"
-        end
-    end
-
-    def display_player
-        start, stop = get_page_range
-        players = MagicPlayers::Players.all[start...stop]
-        players.each.with_index(start) do |players, index|
+    def orig_input(input)
+      if input == "y" || input == "yes"
+          puts " "
+          puts "No Problem! Here is a list of your Orlando Magic Players:"
+          sleep 3
+          PlayersAPI.players_get_call
+          puts " "
+          Players.all.each.with_index(1) do |players, index|
             puts "#{index}. #{players.name}"
+          end
+      else
+          puts "Well thank you for visiting the Orlando Magic!"
+          exit
         end
     end
 
-    def get_page_range
-        [(@page - 1) * @limit, @page * @limit]
+    def prompt_user
+        puts " "
+        puts "Enter a 'number' to learn more about an Orlando Magic Player,'list' to see the list again, a 'letter'
+         to list spells by that letter, or type 'exit' to close the Tome: "
+        puts " "
     end
 
-    def display_single_player(i)
-      player_obj = MagicPlayers::Players.all[i]
-      MagicPlayers::PlayersAPI.get_player_details(player_obj)
-      #binding.pry
-      puts player_obj.full_details
-      puts 'press any key to continue on'
-      gets
+    def print_players(players)
+        puts "Name: #{players.firstName}"
+        puts " "
+        puts "Last Name: #{players.lastName}"
+        puts " "
+        puts "Years Pro: #{players.yearsPro}"
+        puts " "
+        puts "College Name: #{players.collegeName}"
     end
 
-    def display_directions
-        puts <<-INST
-
-  Choose a player by number or just type 'exit' to exit program!
-
-
-        INST
-    end
 end

@@ -13,6 +13,7 @@ class Cli
       while prompt_input != "exit"
           if prompt_input.to_i.between?(1, Players.all.length)
               player = Players.all[prompt_input.to_i - 1]
+              #Players.players_info_call(player)
               print_players(player)
           elsif prompt_input == "list"
               Players.all.each.with_index(1) do |player, index|
@@ -20,17 +21,17 @@ class Cli
               end
           elsif prompt_input == "#{prompt_input}"
             by_number = Players.find_by_number(prompt_input)
-            by_number.each.index(1) do |player, index|
+            by_number.each.with_index(1) do |player, index|
               puts "#{index}. #{player.name}"
             end
-                if prompt_input.empty?
+                if by_number.empty?
                   puts "Try again:"
                 else
                   puts "Choose a number to learn more:"
                   puts " "
                   input = gets.strip.to_i
                   player = by_number[input.to_i - 1]
-                  Players.players_info_call(player)
+                  PlayersAPI.players_info_call(player)
                   #PlayersApi.players_info_call(player)
                   print_players(player)
                 end

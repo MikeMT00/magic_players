@@ -69,7 +69,7 @@ class Cli
     end
 
     def print_players(player)
-        puts "Name: #{player.firstName}"
+        puts "First Name: #{player.firstName}"
         puts " "
         puts "Last Name: #{player.lastName}"
         puts " "

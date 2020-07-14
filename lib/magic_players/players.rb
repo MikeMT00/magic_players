@@ -26,8 +26,5 @@ class Players
     "#{self.firstName} #{self.lastName}"
   end
 
-  def start_with?
-
-  end
 
 end

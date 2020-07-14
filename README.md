@@ -1,8 +1,7 @@
 # MagicPlayers
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/magic_players`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to my Magic Players CLI project! The idea of this application is for Orlando Magic basketabll fans to be able to pick one of their favorite players and get basic information on the Player they select. 
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Call 'bin/magic_players' in terminal. Follow prompts to select player of your choice. 
 
 ## Development
 

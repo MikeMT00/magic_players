@@ -5,7 +5,7 @@ class Cli
     puts " "
     puts "Welcome to the world of the Orlando Magic!:"
     puts " "
-    puts "Do you like our Orlando Magic Basketball Players: y or n"
+    puts "Do you like our Orlando Magic Basketball Players: Enter yes or no"
     @input = gets.strip.downcase
     prompt_user if orig_input(@input)
     prompt_input = gets.strip.downcase
@@ -13,7 +13,6 @@ class Cli
       while prompt_input != "exit"
           if prompt_input.to_i.between?(1, Players.all.length)
               player = Players.all[prompt_input.to_i - 1]
-              #Players.players_info_call(player)
               print_players(player)
           elsif prompt_input == "list"
               Players.all.each.with_index(1) do |player, index|
@@ -25,7 +24,7 @@ class Cli
               puts "#{index}. #{player.name}"
             end
                 if by_number.empty?
-                  puts "Try again:"
+                  puts "Wrong entry, try again. Enter a number 1 through 51, 'list' or 'exit':"
                 else
                   puts "Choose a number to learn more:"
                   puts " "
@@ -35,8 +34,6 @@ class Cli
                   #PlayersApi.players_info_call(player)
                   print_players(player)
                 end
-          else
-              puts "We don't understand...try again"
           end
               prompt_user
               prompt_input = gets.strip.downcase

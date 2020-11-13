@@ -3,8 +3,6 @@ require 'pry'
 require 'uri'
 require 'net/http'
 require 'openssl'
-# require "pry"
-# require "httparty"
 require "json"
 require "rake"
 

@@ -20,9 +20,9 @@ class PlayersAPI
     firstName = player["firstName"]
     lastName = player["lastName"]
     yearsPro = player["yearsPro"]
-    collegeName = player["collegeName"]
+   
 
-    Players.new(firstName: player["firstName"], lastName: player["lastName"], yearsPro: player["yearsPro"], collegeName: player["collegeName"])
+    Players.new(firstName: player["firstName"], lastName: player["lastName"], yearsPro: player["yearsPro"])
       end
   end
 

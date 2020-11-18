@@ -1,13 +1,15 @@
 class Players
-  attr_accessor :firstName, :lastName, :index, :yearsPro
+  attr_accessor :firstName, :lastName, :index, :yearsPro, :collegeName 
 
   @@all = []
 
-  def initialize(firstName:, lastName:, yearsPro:)
+  def initialize(firstName:, lastName:, yearsPro:, collegeName:)
     @firstName = firstName
     @lastName = lastName
-    #@index = index
+    @index = index
     @yearsPro = yearsPro
+    @collegeName = collegeName
+    #binding.pry
     @@all << self
   end
 
@@ -23,6 +25,5 @@ class Players
   def name
     "#{self.firstName} #{self.lastName}"
   end
-
 
 end

@@ -5,7 +5,7 @@ class Cli
     puts " "
     puts "Welcome to the world of the Orlando Magic!:"
     puts " "
-    puts "Do you like our Orlando Magic Basketball Players: y or n"
+    puts "Do you like our Orlando Magic Basketball Players: Enter Yes or No"
     @input = gets.strip.downcase
     prompt_user if orig_input(@input)
     prompt_input = gets.strip.downcase
@@ -16,6 +16,7 @@ class Cli
               #Players.players_info_call(player)
               print_players(player)
           elsif prompt_input == "list"
+              Players.group_by(1..10)
               Players.all.each.with_index(1) do |player, index|
               puts "#{index}. #{player.name}"
               end
@@ -32,7 +33,6 @@ class Cli
                   input = gets.strip.to_i
                   player = by_number[input.to_i - 1]
                   PlayersAPI.players_info_call(player)
-                  #PlayersApi.players_info_call(player)
                   print_players(player)
                 end
           else
@@ -64,17 +64,23 @@ class Cli
 
     def prompt_user
         puts " "
-        puts "Enter a 'number' to learn more about an Orlando Magic Player,'list' to see the list again, or type 'exit' to exit!: "
+        puts "Enter a number '1 through 51' to learn more about an Orlando Magic Player,'list' to see the list again, or type 'exit' to exit!: "
         puts " "
     end
 
     def print_players(player)
-        puts "Name: #{player.firstName}"
+        puts "You've chosen #{player.firstName} #{player.lastName}!"
+        sleep 3
+        puts "One moment please!"
+        sleep 4
         puts " "
+        puts " "
+        puts "First Name: #{player.firstName}"
+        puts "--------------------"
         puts "Last Name: #{player.lastName}"
-        puts " "
+        puts "--------------------"
         puts "Years Pro: #{player.yearsPro}"
-        puts " "
+        puts "--------------------"
         puts "College Name: #{player.collegeName}"
     end
 

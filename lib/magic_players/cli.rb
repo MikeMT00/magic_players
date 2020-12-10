@@ -5,7 +5,7 @@ class Cli
     puts " "
     puts "Welcome to the world of the Orlando Magic!:"
     puts " "
-    puts "Do you like our Orlando Magic Basketball Players: y or n"
+    puts "If you are a true fan of the Orlando Magic and are intrested in our current and past players, enter 'Yes' or 'No'"
     @input = gets.strip.downcase
     prompt_user if orig_input(@input)
     prompt_input = gets.strip.downcase

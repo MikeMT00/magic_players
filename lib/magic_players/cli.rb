@@ -13,7 +13,6 @@ class Cli
       while prompt_input != "exit"
           if prompt_input.to_i.between?(1, Players.all.length)
               player = Players.all[prompt_input.to_i - 1]
-              #Players.players_info_call(player)
               print_players(player)
           elsif prompt_input == "list"
               Players.all.each.with_index(1) do |player, index|
@@ -32,7 +31,6 @@ class Cli
                   input = gets.strip.to_i
                   player = by_number[input.to_i - 1]
                   PlayersAPI.players_info_call(player)
-                  #PlayersApi.players_info_call(player)
                   print_players(player)
                 end
           else
@@ -56,6 +54,11 @@ class Cli
           Players.all.each.with_index(1) do |player, index|
             puts "#{index}. #{player.name}"
           end
+      elsif input == "n" || input == "no"
+          puts " "
+          sleep 3
+          puts "Well we appreciate you swinging by! Have a great day!"
+          exit
       else
           puts "Well thank you for visiting the Orlando Magic!"
           exit

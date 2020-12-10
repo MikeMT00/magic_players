@@ -9,7 +9,6 @@ class Players
     @index = index
     @yearsPro = yearsPro
     @collegeName = collegeName
-    #binding.pry
     @@all << self
   end
 

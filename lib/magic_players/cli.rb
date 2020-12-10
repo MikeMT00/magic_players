@@ -4,8 +4,9 @@ class Cli
   def run
     puts " "
     puts "Welcome to the world of the Orlando Magic!:"
+    sleep 2
     puts " "
-    puts "If you are a true fan of the Orlando Magic and are intrested in our current and past players, enter 'Yes' or 'No'"
+    puts "If you are a true fan of the Orlando Magic and are intrested in our current and past players, enter 'Yes'. If you aren't, enter 'Bye' or 'No'"
     @input = gets.strip.downcase
     prompt_user if orig_input(@input)
     prompt_input = gets.strip.downcase
@@ -54,7 +55,7 @@ class Cli
           Players.all.each.with_index(1) do |player, index|
             puts "#{index}. #{player.name}"
           end
-      elsif input == "n" || input == "no"
+      elsif input == "n" || input == "no" || input == "bye"
           puts " "
           sleep 3
           puts "Well we appreciate you swinging by! Have a great day!"
